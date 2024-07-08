@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/User.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { genSalt, hash } from 'bcrypt';
@@ -11,6 +11,12 @@ export class UsersService {
 
     async findByUsername(username: string): Promise<UserDocument | null> {
         return await this.userModel.findOne({username}).exec()
+    }
+
+    async findById(userId: string): Promise<UserDocument | null> {
+        const userOID = mongoose.Types.ObjectId.createFromHexString(userId)
+
+        return await this.userModel.findById(userOID).exec()
     }
 
     async createUser(createUserDto: CreateUserDto): Promise<undefined> {
