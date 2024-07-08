@@ -1,0 +1,41 @@
+@import '../../../shared/styles/variables.module.scss';
+
+.wrapper {
+    display: flex;
+    align-items: center;
+
+    .username {
+        font-size: 1em;
+        letter-spacing: .01em;
+
+        color: $primary-color;
+        cursor: pointer;
+
+        text-decoration: none;
+
+        transition: all .1s;
+
+        &:hover {
+            color: $accent-color;
+        }
+    }
+
+    .avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 1em;
+        border-radius: 50%;
+        background-color: $block-bg-color;
+        width: 3em;
+        height: 3em;
+        margin-left: 20px;
+        border: 1px solid rgba($primary-color, .25);
+
+        > span {
+            font-size: 1.1em;
+            color: $primary-color;
+        }
+    }
+}

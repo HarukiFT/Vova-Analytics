@@ -1,0 +1,67 @@
+@import '../../shared/styles/variables.module.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: .05em;
+    padding: 3em 0;
+
+    align-items: center;
+
+    flex-grow: .8;
+
+    .inputField {
+        width: 22%;
+        font-size: 1em;
+        padding: 1.5em .5em;
+        border-radius: .75em;
+        background-color: $block-bg-color;
+        border: none;
+        text-align: center;
+
+        margin-bottom: 1em;
+
+        color: $primary-color;
+
+        &::placeholder {
+            color: rgba($primary-color, $secondary-opacity)
+        }
+
+        &:focus {
+            outline: 1px solid $accent-color;
+        }
+    }
+
+    .proceedButton {
+        width: 22%;
+        font-size: 1em;
+        padding: 1.5em .5em;
+        border-radius: .75em;
+        background-color: $accent-color;
+        color: $inverse-color;
+        border: none;
+        text-align: center;
+
+        transition: all .2s ease;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(.99);
+        }
+    }
+}
+
+.title {
+    font-size: 1.6em;
+    margin-bottom: .5em;
+}
+
+.undertitle {
+    text-align: center;
+
+    .mark {
+        color: $accent-color;
+    }
+    margin-bottom: 2em;
+}

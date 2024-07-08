@@ -1,0 +1,29 @@
+@import url('https://fonts.cdnfonts.com/css/inter');
+@import './variables.module.scss';
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+
+    background-color: $background-color;
+
+    font-size: 20px;
+}
+
+p {
+    color: $primary-color;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+}

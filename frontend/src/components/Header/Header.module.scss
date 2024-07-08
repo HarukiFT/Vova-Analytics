@@ -1,0 +1,56 @@
+@import '../../shared/styles/variables.module.scss';
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 10px;
+
+    width: 100%;
+    padding: 1em 4em;
+    font-size: .8em;
+    
+    .sideWrapper {
+        display: flex;
+        align-items: center;
+
+        font-size: 1.25em;
+
+        a {
+            color: $primary-color;
+            margin-left: 30px;
+
+            text-decoration: none;
+
+            &:first-child {
+                margin: 0
+            }
+        }
+
+        .selected {
+            color: $accent-color;
+        }
+
+        .logo {
+            color:$accent-color;
+            font-size: 1.1em;
+            letter-spacing: .05em;
+        }
+    }
+}
+
+.loginHref {
+    padding: .5em 1em;
+    border: 1px solid $border-color;
+    border-radius: 1em;
+
+    background-color: rgba($primary-color, 0);
+
+    transition: .1s ease;
+
+    &:hover {
+        transform: scale(.98);
+        background-color: rgba($primary-color, .1);
+    }
+}
