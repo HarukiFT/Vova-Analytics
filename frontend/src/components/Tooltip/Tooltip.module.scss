@@ -1,0 +1,54 @@
+@import '../../shared/styles/variables.module.scss';
+
+.tooltip {
+    position: absolute;
+
+    font-size: .7em;
+    color: $inverse-color;
+    background-color: $primary-color;
+    padding: .5em 1em;
+    border: 1px solid rgba($border-color, $secondary-opacity);
+    border-radius: .6em;
+    z-index: 2;
+    pointer-events: none;
+
+    > span {
+        color: inherit;
+        text-align: center;
+        text-wrap: nowrap;
+    }
+}
+
+.tooltipTop {
+    @extend .tooltip;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid $primary-color;
+    }
+}
+
+.tooltipBottom {
+    @extend .tooltip;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid $primary-color;
+    }
+}

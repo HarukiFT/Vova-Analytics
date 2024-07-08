@@ -47,33 +47,27 @@ AxiosInstance.interceptors.response.use(
             error.statusCode = error.response.status
         }
 
+        if ((error.statusCode == 401 || error.statusCode == 403) && window.location.pathname !== "/login") {
+            window.location.href = "/login"
+            error.statusCode = undefined
+        }
+
         if (error.config && error.config.showToast && error.config.meta.toastId) {
             if (!error.statusCode) {
                 toast.update(error.config.meta.toastId, {
-                    render: 'Ошибка подключения...',
+                    render: 'Ошибка...',
                     type: 'error',
                     autoClose: 2500,
                     isLoading: false
                 })
             } else {
-                if (error.statusCode == 401 && window.location.pathname !== "/login") {
+                error.endToast = (message: string) => {
                     toast.update(error.config.meta.toastId, {
-                        render: 'Требуется авторизация',
+                        render: message,
                         type: 'error',
                         autoClose: 2500,
                         isLoading: false
                     })
-
-                    window.location.href = ""
-                } else {
-                    error.endToast = (message: string) => {
-                        toast.update(error.config.meta.toastId, {
-                            render: message,
-                            type: 'error',
-                            autoClose: 2500,
-                            isLoading: false
-                        })
-                    }
                 }
             }
         }

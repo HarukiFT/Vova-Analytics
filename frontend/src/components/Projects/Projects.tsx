@@ -1,8 +1,22 @@
+import { useEffect, useState } from 'react'
 import Card from './Card/Card'
 import NewCard from './NewCard/NewCard'
 import Styles from './Projects.module.scss'
+import { ProjectData } from './Projects.types'
+import { AxiosInstance } from '../../shared/services/axiosInstance'
+import { InterceptorError, InterceptorResponse } from '../../shared/typings/interceptor.type'
 
 export default () => {
+    const [projects, setProjects] = useState<ProjectData[]>([])
+
+    useEffect(() => {
+        AxiosInstance.get('/projects/fetch').then((response: InterceptorResponse) => {
+            setProjects(response.data)
+        }).catch((err: InterceptorError) => {
+            return
+        })
+    }, [])
+
     return (
         <div className={Styles.wrapper}>
             <div className={Styles.holder}>
@@ -11,7 +25,9 @@ export default () => {
 
                 <div className={Styles.projectsHolders}>
                     <NewCard/>
-                    <Card/>
+                    {projects.map(projectData => (
+                        <Card {...projectData}/>
+                    ))}
                 </div>
             </div>
         </div>
