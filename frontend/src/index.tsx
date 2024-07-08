@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import Auth from './components/Auth/Auth';
 import { AuthContextProvider } from './contexts/AuthContext/AuthContext';
 import Projects from './components/Projects/Projects';
+import { ModalContextProvider } from './contexts/ModalContext/ModalContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -23,8 +24,10 @@ const router = createBrowserRouter(createRoutesFromElements(
 root.render(
   <>
     <AuthContextProvider>
-      <RouterProvider router={router}></RouterProvider>
-      <ToastContainer position='bottom-center' theme='dark' style={{fontSize: '.8em'}}/>
+      <ModalContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+        <ToastContainer position='bottom-center' theme='dark' style={{fontSize: '.8em'}}/>
+      </ModalContextProvider>
     </AuthContextProvider>
   </>
   

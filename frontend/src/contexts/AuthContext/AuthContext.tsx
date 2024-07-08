@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const AuthContext = createContext<AuthContextType>({logout: () => {}, signIn: () => {}})
 
-const AuthContextProvider = ({ children }: { children: JSX.Element[] }) => {
+const AuthContextProvider = ({ children }: { children: JSX.Element[] | JSX.Element }) => {
     const [token, setToken] = useState<string | undefined>(localStorage.getItem('AUTH_TOKEN') ?? undefined)
     const [userData, setUserData] = useState<UserData | undefined>()
 
