@@ -23,7 +23,7 @@ export class ProjectGuard implements CanActivate {
                 throw new ForbiddenException()
             }
         } catch {
-            throw new ForbiddenException()
+            return false
         }
 
         request.projectId = projectId
