@@ -1,0 +1,76 @@
+@import '../../../shared/styles/variables.module.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: $block-bg-color;
+
+    padding: 1.5em 1.5em;
+
+    border-radius: 1em;
+
+    cursor: pointer;
+
+    height: 17em;
+    aspect-ratio: 4 / 5;
+
+    &:hover .indicator {
+        background-color: $accent-color;
+        color: $inverse-color;
+    }
+
+    .topper {
+        display: flex;
+        flex-direction: column
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: min-content;
+
+        .regularButton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 25%;
+            aspect-ratio: 1 / 1;
+
+            background-color: $block-dark-color;
+            border-radius: .5em;
+
+            padding: .9em;
+            > svg {
+                height: 100%;
+                width: 100%;
+                color: rgba($primary-color, .6);
+            }
+        }
+
+        .accentButton {
+            @extend .regularButton;
+            background-color: $accent-color;
+
+            > svg {
+                color: $inverse-color;
+            }
+        }
+    }
+}
+
+.projectName {
+    margin-top: .25em;
+    font-size: 1.5em;
+}
+
+.cardType {
+    color: rgba($primary-color, .6);
+    letter-spacing: .01em;
+    font-size: .8em;
+    font-weight: 400;
+}

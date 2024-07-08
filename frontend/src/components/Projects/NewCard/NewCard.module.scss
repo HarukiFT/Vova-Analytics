@@ -1,0 +1,50 @@
+@import '../../../shared/styles/variables.module.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $block-bg-color;
+
+    border-radius: 1em;
+
+    cursor: pointer;
+
+    height: 17em;
+    aspect-ratio: 4 / 5;
+
+    &:hover .indicator {
+        background-color: $accent-color;
+        color: $inverse-color;
+    }
+}
+
+.indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: .5em;
+
+    border-radius: 50%;
+    background-color: $block-dark-color;
+
+    color: white;
+    transition: all .1s;
+
+    > svg {
+        width: 1.25em;
+        height: 1.25em;
+    }    
+}
+
+.placeholder {
+    margin-top: 2em;
+
+    letter-spacing: .01em;
+    font-size: .8em;
+    color: $primary-color;
+    text-align: center;
+}

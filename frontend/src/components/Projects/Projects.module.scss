@@ -1,0 +1,45 @@
+@import '../../shared/styles/variables.module.scss';
+
+.wrapper {
+    margin-top: 1em;
+
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+
+    justify-content: center;
+}
+
+.holder {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.title {
+    font-size: 3em;
+    letter-spacing: 0.01em;
+    margin-bottom: .5em;
+}
+
+.subtitle {
+    font-size: .8em;
+    color: rgba($primary-color, 0.6);
+}
+
+.projectsHolders {
+    margin-top: 4em;
+
+    display: flex;
+    align-items: center;
+    height: min-content;
+    overflow: auto;
+
+    > div {
+        margin-left: 1.5em;
+
+        &:first-child {
+            margin: 0;
+        }
+    }
+}
