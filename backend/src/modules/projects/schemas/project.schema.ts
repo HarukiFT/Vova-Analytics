@@ -6,6 +6,10 @@ import { User } from "src/modules/users/schemas/User.schema";
 export class Project {
     @Prop({ required: true })
     name: string
+    @Prop()
+    client: string
+    @Prop()
+    placeLink: string
 
     @Prop({ required: true })
     apiKey: string
