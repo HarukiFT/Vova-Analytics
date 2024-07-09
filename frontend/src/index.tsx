@@ -24,7 +24,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="projects" element={<Projects/>} loader={protectedLoader}/>
   </Route>
 
-  <Route path="/project" element={<ProjectMenu/>}/>
+  <Route path="/project/:projectId" element={<ProjectMenu/>}/>
   </>)
 )
 

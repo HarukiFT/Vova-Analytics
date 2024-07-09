@@ -47,7 +47,7 @@ AxiosInstance.interceptors.response.use(
             error.statusCode = error.response.status
         }
 
-        if ((error.statusCode == 401 || error.statusCode == 403) && window.location.pathname !== "/login") {
+        if ((error.statusCode == 401) && window.location.pathname !== "/login") {
             window.location.href = "/login"
             error.statusCode = undefined
         }

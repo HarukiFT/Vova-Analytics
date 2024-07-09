@@ -1,5 +1,5 @@
 import React, { createRef, useEffect, useState } from "react";
-import { TooltipProps } from "./Tooltip.types";
+import { TooltipProps } from "./Tooltip.type";
 import { animated, useSpring } from "react-spring";
 import Styles from './Tooltip.module.scss'
 

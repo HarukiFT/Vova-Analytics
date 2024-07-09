@@ -3,7 +3,7 @@ import {ReactComponent as EditIcon} from '../../../shared/assets/edit.svg'
 import {ReactComponent as TrashIcon} from '../../../shared/assets/trash.svg'
 import {ReactComponent as LinkIcon} from '../../../shared/assets/link.svg'
 import Tooltip from '../../Tooltip/Tooltip'
-import { ProjectData } from '../Projects.types'
+import { ProjectData } from '../../../shared/typings/project.type'
 
 export default (props: ProjectData) => {
     return (
