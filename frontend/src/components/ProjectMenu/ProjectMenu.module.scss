@@ -1,0 +1,210 @@
+@import '../../shared/styles/variables.module.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+}
+
+//Header section
+.header {
+    display: flex;
+    justify-content: space-between;
+ 
+    padding: 1em 3em;
+
+    background-color: $header-bg-color;
+    font-size: .8em;
+
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.6);
+
+    .sideWrapper {
+        display: flex;
+        align-items: center;
+
+        .projectName {
+            color: $primary-color;
+            font-weight: 500;
+            font-size: 1.1em;
+            letter-spacing: .025em;
+        }
+
+        .logo {
+            color:$accent-color;
+            font-size: 1.3em;
+            letter-spacing: .05em;
+
+            padding-right: 1em;
+            margin-right: 1em;
+
+            border-right: 2px solid rgba($primary-color, .6);
+        }
+    }
+}
+
+.button {
+    font-size: 1.1em;
+    padding: .6em 1em;
+
+    border: none;
+    border-radius: .75em;
+
+    transition: all .1s;
+}
+
+.inactiveButton {
+    @extend .button;
+
+    background-color: $incative-button-bg;
+    color: rgba($primary-color, $secondary-opacity);
+
+    cursor: not-allowed;
+}
+//**
+
+.gridWrapper {
+    display: grid;
+    flex-grow: 1;
+
+    grid-template-columns: 5fr 2fr;
+    gap: 5em;
+}
+
+.contentWrapper {
+    padding-left: 20em;
+    padding-right: 10em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+        height: 100%;
+        width: 100%;
+        
+        .sectionTitle {
+            font-size: 2.5em;
+            letter-spacing: .015em;
+            margin-bottom: 1em;
+        }
+    
+        .sectionDescription {
+            font-size: .9em;
+            color: rgba($primary-color, $secondary-opacity);
+            margin-bottom: 1em;
+        }
+    
+        .mainGrid {
+            display: grid;
+    
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 1em;
+    
+            .gridInput {
+                display: flex;
+                flex-direction: column;
+    
+                width: 100%;
+                height: 100%;
+    
+                > p {
+                    font-size: 0.8em
+                }
+    
+                > input {
+                    margin-top: .5em;
+    
+                    width: 100%;
+                    font-size: .9em;
+                    padding: 1.5em 1em;
+                    border-radius: .75em;
+                    background-color: $block-bg-color;
+                    border: none;
+                    text-align: center;
+                
+                    color: $primary-color;
+                
+                    &::placeholder {
+                        color: rgba($primary-color, $secondary-opacity)
+                    }
+                
+                    &:focus {
+                        outline: 1px solid $accent-color;
+                    }
+                }
+    
+                > input[type="button"] {
+                    color: rgba($primary-color, $secondary-opacity);
+                    cursor: pointer;
+                    transition: all .1s;
+    
+                    &:hover {
+                        transform: scale(.98);
+                    }
+    
+                    &:active {
+                        transform: scale(.97)
+                    }
+    
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sectionWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+
+    padding-right: 5em;
+    padding-left: 7em;
+    padding-top: 6em;
+
+    .sectionButton {
+            width: 100%;
+            font-size: .8em;
+            padding: 1.5em 2em;
+            border-radius: .75em;
+            background-color: $block-bg-color;
+            border: none;
+            text-align: left;
+        
+            cursor: pointer;
+            color: $primary-color;
+    
+            &:hover {
+                transform: scale(.98);
+            }
+
+            &:active {
+                transform: scale(.97)
+            }
+
+            &:not(:first-child) {
+                margin-top: 1.5em;
+            }
+    }
+}
+
+.mark {
+    color: $accent-color;
+}
+
+.transparentText {
+    color: rgba($primary-color, $secondary-opacity);
+}

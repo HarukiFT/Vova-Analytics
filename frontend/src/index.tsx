@@ -11,16 +11,21 @@ import Projects from './components/Projects/Projects';
 import { ModalContextProvider } from './contexts/ModalContext/ModalContext';
 import ProtectedRoute from './components/Routes/ProtectedRoute/ProtectedRoute';
 import protectedLoader from './components/Routes/ProtectedRoute/ProtectedRoute';
+import ProjectMenu from './components/ProjectMenu/ProjectMenu';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 const router = createBrowserRouter(createRoutesFromElements(
+  <>
   <Route path="/" element={<Root/>}>
     <Route path="login" element={<Auth/>}/>
     <Route path="projects" element={<Projects/>} loader={protectedLoader}/>
-  </Route>)
+  </Route>
+
+  <Route path="/project" element={<ProjectMenu/>}/>
+  </>)
 )
 
 root.render(
