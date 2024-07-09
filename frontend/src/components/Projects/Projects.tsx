@@ -5,9 +5,11 @@ import Styles from './Projects.module.scss'
 import { ProjectData } from './Projects.types'
 import { AxiosInstance } from '../../shared/services/axiosInstance'
 import { InterceptorError, InterceptorResponse } from '../../shared/typings/interceptor.type'
+import { useModal } from '../../contexts/ModalContext/ModalContext'
 
 export default () => {
     const [projects, setProjects] = useState<ProjectData[]>([])
+    const modal = useModal()
 
     useEffect(() => {
         AxiosInstance.get('/projects/fetch').then((response: InterceptorResponse) => {
@@ -15,7 +17,7 @@ export default () => {
         }).catch((err: InterceptorError) => {
             return
         })
-    }, [])
+    }, [modal.isOpen])
 
     return (
         <div className={Styles.wrapper}>
@@ -26,7 +28,7 @@ export default () => {
                 <div className={Styles.projectsHolders}>
                     <NewCard/>
                     {projects.map(projectData => (
-                        <Card {...projectData}/>
+                        <Card {...projectData} key={projectData._id}/>
                     ))}
                 </div>
             </div>

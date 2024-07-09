@@ -9,6 +9,8 @@ import Auth from './components/Auth/Auth';
 import { AuthContextProvider } from './contexts/AuthContext/AuthContext';
 import Projects from './components/Projects/Projects';
 import { ModalContextProvider } from './contexts/ModalContext/ModalContext';
+import ProtectedRoute from './components/Routes/ProtectedRoute/ProtectedRoute';
+import protectedLoader from './components/Routes/ProtectedRoute/ProtectedRoute';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +19,7 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Root/>}>
     <Route path="login" element={<Auth/>}/>
-    <Route path="projects" element={<Projects/>}/>
+    <Route path="projects" element={<Projects/>} loader={protectedLoader}/>
   </Route>)
 )
 

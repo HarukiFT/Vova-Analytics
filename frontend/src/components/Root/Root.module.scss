@@ -10,5 +10,6 @@
 }
 
 .blured {
-    filter: blur(2px);
+    pointer-events: none;
+    filter: blur(4px);
 }
