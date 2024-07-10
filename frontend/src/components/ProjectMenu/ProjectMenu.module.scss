@@ -46,12 +46,31 @@
 
 .button {
     font-size: 1.1em;
-    padding: .6em 1em;
+    padding: .8em 1em;
 
     border: none;
     border-radius: .75em;
 
     transition: all .1s;
+}
+
+.activeButton {
+    @extend .button;
+
+    background-color: $accent-color;
+    color: $inverse-color;
+
+    cursor: pointer;
+
+    transition: all .1s;
+
+    &:hover {
+        transform: scale(.99);
+    }
+
+    &:active {
+        transform: scale(.97);
+    }
 }
 
 .inactiveButton {

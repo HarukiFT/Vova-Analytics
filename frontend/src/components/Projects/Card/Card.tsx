@@ -4,6 +4,7 @@ import {ReactComponent as TrashIcon} from '../../../shared/assets/trash.svg'
 import {ReactComponent as LinkIcon} from '../../../shared/assets/link.svg'
 import Tooltip from '../../Tooltip/Tooltip'
 import { ProjectData } from '../../../shared/typings/project.type'
+import { Link } from 'react-router-dom'
 
 export default (props: ProjectData) => {
     return (
@@ -21,9 +22,9 @@ export default (props: ProjectData) => {
                 </Tooltip>
 
                 <Tooltip side='top' tooltip='Открыть меню редактирования проекта'>
-                    <span className={Styles.regularButton}>
+                    <Link to={`/project/${props._id}#general`} className={Styles.regularButton}>
                         <EditIcon/>
-                    </span>
+                    </Link>
                 </Tooltip>
                 
                 <Tooltip side='top' tooltip='Удалить проект'>
