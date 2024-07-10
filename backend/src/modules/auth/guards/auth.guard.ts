@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
         const splitted: string[] = request.headers['authorization']?.split(' ') ?? []
 
         if (splitted.length !== 2 || splitted[0] !== 'Bearer') {
-            return false
+            throw new UnauthorizedException()
         }
 
         try {

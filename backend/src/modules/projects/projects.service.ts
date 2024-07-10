@@ -14,7 +14,7 @@ export class ProjectsService {
         const apiKey = generateApiKey(this.configService.get<number>('API_KEY_LENGTH')!)
         const ownerOIB: mongoose.Types.ObjectId = mongoose.Types.ObjectId.createFromHexString(ownerId)
 
-        await new this.projectModel({...createProject, owner: ownerOIB, apiKey}).save()
+        await new this.projectModel({...createProject, client: "", placeLink: "", owner: ownerOIB, apiKey}).save()
     }
 
     async fetchProjects(ownerId: string): Promise<ProjectDocument[]> {
