@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -27,12 +27,21 @@ export class ProjectsController {
         return projectDocuments
     }
 
-    @Get('/Get')
+    @Get('/get')
     @HttpCode(200)
     @UseGuards(AuthGuard, ProjectGuard)
     async getProject(@Request() request: any): Promise<ProjectDocument> {
         const projectId: string = request.headers['project-id']
 
         return (await this.projectsService.getProject(projectId))!
+    }
+
+    @Patch('/update')
+    @HttpCode(200)
+    @UseGuards(AuthGuard, ProjectGuard)
+    async updateProject(@Request() request: any, @Body() body: any) {
+        const projectId = request.projectId
+
+        await this.projectsService.updateProject(projectId, body)
     }
 }

@@ -33,4 +33,16 @@ export class ProjectsService {
     async getProjectByApi(apiKey: string): Promise<ProjectDocument | null> {
         return await this.projectModel.findOne({apiKey}).exec()
     }
+
+    async updateProject(projectId: string, updateData: Record<string, string>): Promise<void> {
+        const updateMap = {
+            client: updateData.client || undefined,
+            placeLink: updateData.placeLink || undefined,
+            name: updateData.name || undefined
+        }
+
+        const projectOID = mongoose.Types.ObjectId.createFromHexString(projectId)
+
+        await this.projectModel.updateOne({_id: projectOID}, {$set: updateMap}).exec()
+    }
 }
