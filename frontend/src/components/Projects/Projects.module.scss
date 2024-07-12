@@ -35,6 +35,8 @@
     height: min-content;
     overflow: auto;
 
+    padding-bottom: 5px;
+
     > div {
         margin-left: 1.5em;
 
@@ -42,4 +44,17 @@
             margin: 0;
         }
     }
+
+    &::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: none; /* Цвет фона скроллбара */
+      }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $block-bg-color; /* Цвет ползунка скроллбара */
+        border-radius: 5px; /* Скругление углов ползунка скроллбара */
+      }
 }

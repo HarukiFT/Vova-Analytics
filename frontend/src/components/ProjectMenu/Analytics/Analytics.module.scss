@@ -1,0 +1,15 @@
+@import '../../../shared/styles/variables.module.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .actionBar {
+        display: flex;
+        width: 100%;
+        padding: .5em .5em;
+        border-radius: 1em;
+
+        background-color: $block-bg-color;
+    }
+}

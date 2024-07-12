@@ -45,7 +45,7 @@
 }
 
 .button {
-    font-size: 1.1em;
+    font-size: .9em;
     padding: .8em 1em;
 
     border: none;
@@ -203,6 +203,8 @@
             border: none;
             text-align: left;
         
+            text-decoration: none;
+
             cursor: pointer;
             color: $primary-color;
     

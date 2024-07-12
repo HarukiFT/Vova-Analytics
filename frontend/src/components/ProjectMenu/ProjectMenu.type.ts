@@ -9,5 +9,5 @@ export interface ProjectMenuProps {
 export interface GeneralMenuProps extends ProjectMenuProps {
     setReady: (state: boolean) => void
     onUpdate: () => void
-    trigger: boolean
+    trigger: boolean,
 }

@@ -1,12 +1,13 @@
 import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react'
 import Styles from './ProjectMenu.module.scss'
-import { useNavigate, useNavigation, useParams } from 'react-router-dom'
+import { Link, useNavigate, useNavigation, useParams } from 'react-router-dom'
 import { ProjectData } from '../../shared/typings/project.type'
 import { AxiosInstance } from '../../shared/services/axiosInstance'
 import { InterceptorConfig, InterceptorError, InterceptorResponse } from '../../shared/typings/interceptor.type'
 import { toast } from 'react-toastify'
 import { Interface } from 'readline'
 import { GeneralMenuProps, SectionData } from './ProjectMenu.type'
+import Analytics from './Analytics/Analytics'
 
 
 const Sections: SectionData = {
@@ -35,7 +36,7 @@ const validators: Record<string, (value: any) => boolean> = {
     },
 }
 
-const GeneralComponent = ({projectData, setReady, trigger}: GeneralMenuProps) => {
+const GeneralComponent = ({projectData, setReady, trigger, onUpdate}: GeneralMenuProps) => {
     const handleApiKey = () => {
         if (!projectData?.apiKey) {
             toast.error('Данные не загружены...')
@@ -61,6 +62,8 @@ const GeneralComponent = ({projectData, setReady, trigger}: GeneralMenuProps) =>
             if (response.endToast) {
                 response.endToast('Сохранено')
             }
+
+            onUpdate()
         }).catch((err: InterceptorError) => {
             if (err.endToast) {
                 err.endToast('Ошибка при сохранении')
@@ -69,6 +72,8 @@ const GeneralComponent = ({projectData, setReady, trigger}: GeneralMenuProps) =>
     }, [trigger])
 
     useEffect(() => {
+        setReady(false)
+
         setFields({
             client: projectData?.client,
             placeLink: projectData?.placeLink,
@@ -83,11 +88,11 @@ const GeneralComponent = ({projectData, setReady, trigger}: GeneralMenuProps) =>
                 return
             }
         }
-
-        setReady(true)
     }, [fields])
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+        setReady(true)
+
         setFields({
             ...fields,
             [event.target.name]: event.target.value   
@@ -152,16 +157,30 @@ export default () => {
         }
     })
 
+    const renderSection = () => {
+        if (!projectData) return;
+
+        switch(hash) {
+            case 'general':
+                return <GeneralComponent trigger={trigger} onUpdate={() => {setUpdate(Date.now())}} setReady={setReady} projectData={projectData}/>
+            case 'analytics':
+                return <Analytics projectData={projectData}/>
+        }
+    }
+
     return (<div className={Styles.wrapper}>
         <div className={Styles.header}>
             <div className={Styles.sideWrapper}>
                 <a className={Styles.logo}>Metrologist</a>
-                <span className={Styles.projectName}>Dirol</span>
+                <span className={Styles.projectName}>{projectData?.name}</span>
             </div>
 
             {}
+
             <div className={Styles.sideWrapper}>
+                {hash == 'general' && 
                 <input type="button" onClick={() => {isReady && setTrigger(!trigger)}} className={isReady ? Styles.activeButton : Styles.inactiveButton} value="Сохранить" />
+                }
             </div>
         </div>
 
@@ -171,13 +190,13 @@ export default () => {
                     <p className={Styles.sectionTitle}>{Sections[hash].title}</p>
                     <p className={Styles.sectionDescription}>{Sections[hash].description}</p>
 
-                    {window.location.hash === '#general' && <GeneralComponent trigger={trigger} onUpdate={() => {setUpdate(Date.now())}} setReady={setReady} projectData={projectData}/>}
+                    {renderSection()}
                 </div>
             </div>
 
             <div className={Styles.sectionWrapper}>
-                <input type='button' value="Общее" className={Styles.sectionButton} />
-                <input type='button' value="Аналитика" className={Styles.sectionButton} />
+                <Link to={"#general"} className={Styles.sectionButton}>Общее</Link>
+                <Link to={"#analytics"} className={Styles.sectionButton}>Аналитика</Link>
                 <input type='button' value="Аудит логов" className={Styles.sectionButton} />
             </div>
         </div>
