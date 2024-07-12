@@ -5,6 +5,7 @@ import { ApiGuard } from '../projects/guards/api.guard';
 import { CreateMetricsDto } from './dto/create-metrics.dto';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { ProjectGuard } from '../projects/guards/project.guard';
+import { GetDayMetricsDto } from './dto/get-day-metrics.dto';
 
 @Controller('metrics')
 export class MetricsController {
@@ -22,6 +23,18 @@ export class MetricsController {
         for (let dto of createMetricsDto.payload) {
             await this.metricsService.createMetric(request.projectId, dto)
         }
+    }
+
+    @Post('/byday')
+    @UseGuards(AuthGuard, ProjectGuard)
+    async getDayMetrics(@Body() getDayMetricsDto: GetDayMetricsDto ,@Request() request: any) {
+        const projectId: string = request.projectId
+
+        const from: Date = new Date(getDayMetricsDto.from)
+        const to: Date = new Date(getDayMetricsDto.to)
+
+        const result = await this.metricsService.groupByDay(projectId, getDayMetricsDto.value, from, to)
+        return result
     }
 
     @Get('/values')

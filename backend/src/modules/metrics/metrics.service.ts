@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { MetricDocument } from './schemas/metric.schema';
 import mongoose, { Model } from 'mongoose';
 import { CreateMetricDto } from './dto/create-metric.dto';
+import metricsDayAggregate from './aggregates/metrics-day.aggregate';
 
 @Injectable()
 export class MetricsService {
@@ -21,9 +22,17 @@ export class MetricsService {
             .save()
     }
 
+    async groupByDay(projectId: string, targetValue: string, from: Date, to: Date) {
+        const projectOID = mongoose.Types.ObjectId.createFromHexString(projectId)
+
+        const pipeline = metricsDayAggregate(projectOID, targetValue, from, to)
+
+        return await this.metricsModel.aggregate(pipeline).exec()
+    }
+
     async getDistinctValues(projectId: string): Promise<string[]> {
         const projectOID = mongoose.Types.ObjectId.createFromHexString(projectId)
 
-        return this.metricsModel.distinct('value', {project: projectOID}).exec()
+        return await this.metricsModel.distinct('value', {project: projectOID}).exec()
     }
 }
