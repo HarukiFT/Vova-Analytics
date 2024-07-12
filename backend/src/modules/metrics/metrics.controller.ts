@@ -1,8 +1,10 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { MetricsService } from './metrics.service';
 import { CreateMetricDto } from './dto/create-metric.dto';
 import { ApiGuard } from '../projects/guards/api.guard';
 import { CreateMetricsDto } from './dto/create-metrics.dto';
+import { AuthGuard } from '../auth/guards/auth.guard';
+import { ProjectGuard } from '../projects/guards/project.guard';
 
 @Controller('metrics')
 export class MetricsController {
@@ -20,5 +22,13 @@ export class MetricsController {
         for (let dto of createMetricsDto.payload) {
             await this.metricsService.createMetric(request.projectId, dto)
         }
+    }
+
+    @Get('/values')
+    @UseGuards(AuthGuard, ProjectGuard)
+    async getDistinctValues(@Request() request: any) {
+        const projectId: string = request.projectId
+
+        return await this.metricsService.getDistinctValues(projectId)
     }
 }

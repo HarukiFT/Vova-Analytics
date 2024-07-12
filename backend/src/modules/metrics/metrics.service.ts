@@ -20,4 +20,10 @@ export class MetricsService {
             metadata: createMetricDto.clarification ? { clarification: createMetricDto.clarification } : undefined})
             .save()
     }
+
+    async getDistinctValues(projectId: string): Promise<string[]> {
+        const projectOID = mongoose.Types.ObjectId.createFromHexString(projectId)
+
+        return this.metricsModel.distinct('value', {project: projectOID}).exec()
+    }
 }
