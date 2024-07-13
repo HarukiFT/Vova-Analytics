@@ -6,10 +6,115 @@
 
     .actionBar {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
+
         width: 100%;
-        padding: .5em .5em;
+        padding: .75em 1em;
         border-radius: 1em;
 
         background-color: $block-bg-color;
+
+        .dateDiv {
+            display: flex;
+            align-items: center;
+
+            .calendarIcon {
+                height: 1.25em;
+                width: 1.25em;
+                color: rgba($primary-color, $secondary-opacity);
+                margin-right: .5em;
+            }
+        }
+    }
+
+    .metricsWrapper {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+
+        margin-top: 1em;
+
+        width: 120%;
+        aspect-ratio: 16 / 9;
+
+        padding: 2em 1em 1em 1em;
+
+        border-radius: 1em;
+
+        background-color: $block-bg-color;
+
+        .metricHolder {
+            position: relative;
+            justify-content: end;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            padding-left: .5em;
+
+            .candle {
+                position: relative;
+                margin-bottom: .5em;
+                width: 100%;
+            }
+
+            .timestamp {
+                color: rgba($primary-color, $secondary-opacity);
+                font-size: .8em;
+                letter-spacing: .05em;
+                text-align: center;
+            }
+
+            .info {
+                position: absolute;
+
+                display: flex;
+                flex-direction: column;
+
+                bottom: calc(100% + .1em);
+                left: calc(100% + .1em);
+                background-color: $modal-color;
+                border-radius: 0;
+                border: 1px solid white;
+                z-index: 10000;
+
+                .count {
+                    border-radius: 0;
+
+                    padding: .5em 2em;
+
+                    text-align: center;
+
+                    font-weight: 300;
+                    background-color: rgba(black, .5);
+                    font-size: 1em;
+                }
+                
+                .date {
+                    font-size: .8em;
+                    padding: .5em 2em;
+
+                    font-weight: 300;
+                    text-align: center;
+                    color: white;
+                    letter-spacing: .05em;
+                }
+            }
+        }
+
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background-color: none;
+          }
+    
+        &::-webkit-scrollbar-thumb {
+            background-color: $block-bg-color;
+            border-radius: 5px;
+        }
     }
 }

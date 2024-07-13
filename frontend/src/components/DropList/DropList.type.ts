@@ -1,5 +1,8 @@
 export interface DropListProps {
     choices: string[],
     isActive?: boolean,
-    initSelection?: string
+    initSelection?: string,
+    prefix?: string,
+
+    onChoice: (choice: string) => void 
 }

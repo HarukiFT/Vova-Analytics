@@ -4,7 +4,7 @@ import Styles from './DropList.module.scss'
 import ArrowIcon from '../../shared/assets/list-arrow.svg'
 import { useSpring, animated } from "react-spring";
 
-export default ({ choices, isActive, initSelection }: DropListProps) => {
+export default ({ choices, isActive, initSelection, prefix, onChoice }: DropListProps) => {
     const [isOpen, setOpen] = useState<boolean>(false)
     const [selected, setSelected] = useState<string>()
 
@@ -19,6 +19,10 @@ export default ({ choices, isActive, initSelection }: DropListProps) => {
             height: '0px'
         },
     }))
+
+    useEffect(() => {
+        setSelected(initSelection)
+    }, [initSelection])
 
     const arrowSpring = useSpring({
         to: {
@@ -49,12 +53,14 @@ export default ({ choices, isActive, initSelection }: DropListProps) => {
     const handleSelect = (value: string) => {
         setSelected(value)
         setOpen(false)
+
+        onChoice(value)
     }
 
     return (
         <div className={Styles.list}>
             <div className={Styles.main} onClick={handleClick}>
-                <span className={Styles.selected}>{selected ?? "Выберите метрику"} </span>
+                <span className={Styles.selected}>{`${prefix}${selected ?? ''}`} </span>
                 <animated.img style={arrowSpring} src={ArrowIcon} className={Styles.arrow}/>
             </div>
 
